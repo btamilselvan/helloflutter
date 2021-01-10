@@ -1,9 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:wip/Words.dart';
+import 'package:wip/com/success/widgets/app_login.dart';
+import 'package:wip/com/success/widgets/basic.dart';
+import 'package:wip/com/success/widgets/form_test.dart';
+import 'package:wip/com/success/widgets/home.dart';
+import 'package:wip/com/success/widgets/my_images.dart';
+import 'package:wip/com/success/widgets/stateful_test.dart';
+import 'package:wip/com/success/widgets/util.dart';
 
 void main() {
   // runApp(MyApp());
-  runApp(new Words());
+  // runApp(new Words());
+  // runApp(MainApp());
+  // runApp(new Basic());
+  runApp(new MaterialApp(
+    title: 'Hello world!',
+    initialRoute: Home.screenName,
+    routes: {
+      Constants.homeScreenName: (context) => Home(),
+      Constants.formScreenName: (context) => MySimpleForm(),
+      Constants.imageScreenName: (context) => MyImage()
+    },
+  ));
+}
+
+class MainApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Hello world!!!',
+      // home: new Basic(),
+      // home: new AppLogin(),
+      home: new Scaffold(
+        appBar: AppBar(
+            title: new Text('Welcome'),
+            leading: new Icon(Icons.menu),
+            actions: [
+              Padding(
+                  padding: EdgeInsets.only(right: 50.0),
+                  child: Icon(Icons.login))
+            ]),
+        // body: AppLogin(),
+        // body: MyStatefulWidget(),
+        // body: MySimpleForm(),
+      ),
+      initialRoute: '/',
+      routes: {
+        '': (context) => MainApp(),
+        '/simple': (context) => MySimpleForm()
+      },
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
