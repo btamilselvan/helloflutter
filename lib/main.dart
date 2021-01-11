@@ -5,6 +5,8 @@ import 'package:wip/com/success/widgets/basic.dart';
 import 'package:wip/com/success/widgets/form_test.dart';
 import 'package:wip/com/success/widgets/home.dart';
 import 'package:wip/com/success/widgets/my_images.dart';
+import 'package:wip/com/success/widgets/my_list.dart';
+import 'package:wip/com/success/widgets/navigate_one.dart';
 import 'package:wip/com/success/widgets/stateful_test.dart';
 import 'package:wip/com/success/widgets/util.dart';
 
@@ -19,7 +21,11 @@ void main() {
     routes: {
       Constants.homeScreenName: (context) => Home(),
       Constants.formScreenName: (context) => MySimpleForm(),
-      Constants.imageScreenName: (context) => MyImage()
+      Constants.imageScreenName: (context) => MyImage(),
+      Constants.listScreenName: (context) => MyList(),
+      Constants.flexListScreenName: (context) => FlexibleList(),
+      Constants.navigationScreenName: (context) => ScreenOne(),
+      Constants.carouselScreenName: (context) => MyCarouselImage()
     },
   ));
 }
