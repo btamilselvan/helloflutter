@@ -16,6 +16,14 @@ class Home extends StatelessWidget {
             child: Text(
                 'Navigate to different pages using the below buttons/links'),
           ),
+          Padding(
+              padding: EdgeInsets.all(10.0),
+              child: new ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(
+                      context, Constants.recipePreviewTestScreenName,
+                      arguments: ScreenArguments(
+                          'hello', WordPair.random().asPascalCase)),
+                  child: new Text('Recipe Preview'))),
           Container(
             height: 50,
             child: ListView(
@@ -59,7 +67,19 @@ class Home extends StatelessWidget {
                     child: new ElevatedButton(
                         onPressed: () => Navigator.pushNamed(
                             context, Constants.carouselScreenName),
-                        child: new Text('Carousel Images Test')))
+                        child: new Text('Carousel Images Test'))),
+                Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: new ElevatedButton(
+                        onPressed: () => Navigator.pushNamed(
+                            context, Constants.httpTestScreenName),
+                        child: new Text('Http Test'))),
+                Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: new ElevatedButton(
+                        onPressed: () => Navigator.pushNamed(
+                            context, Constants.statefulScreenName),
+                        child: new Text('Stateful Test')))
               ],
               scrollDirection: Axis.horizontal,
             ),

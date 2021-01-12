@@ -10,12 +10,19 @@ class MyCounterState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return new Row(
-      children: [
-        new MyCounter(counter: this.counter),
-        new MyIncrementer(onPressed: this.increment),
-        new MyDecrementer(onPressed: this.decrement)
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Stateful Test'),
+      ),
+      body: Center(
+        child: Row(
+          children: [
+            new MyCounter(counter: this.counter),
+            new MyIncrementer(onPressed: this.increment),
+            new MyDecrementer(onPressed: this.decrement)
+          ],
+        ),
+      ),
     );
   }
 
@@ -32,6 +39,7 @@ class MyCounterState extends State<MyStatefulWidget> {
 
 class MyCounter extends StatelessWidget {
   final int counter;
+
   MyCounter({this.counter});
 
   @override
