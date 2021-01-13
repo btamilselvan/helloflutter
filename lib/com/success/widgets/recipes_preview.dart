@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wip/com/success/dto/recipes.dart';
+import 'package:wip/com/success/services/services.dart';
 import 'package:wip/com/success/widgets/recipe_detail.dart';
-import 'package:wip/com/success/widgets/services.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class RecipePreview extends StatelessWidget {
   Future<Recipes> recipes;

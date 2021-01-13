@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:wip/com/success/widgets/services.dart';
+import 'package:wip/com/success/services/services.dart';
 
 class MyHttpTest extends StatelessWidget {
 
