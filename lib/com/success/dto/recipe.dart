@@ -6,7 +6,7 @@ part 'recipe.g.dart';
 class Recipe {
   final String recipeId;
   final String title;
-  final String pictureUrl;
+  String pictureUrl; //not final on purpose
   final String preparationTime;
   final String portion;
   final String createdDate;

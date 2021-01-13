@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:wip/com/success/dto/recipe.dart';
 import 'package:wip/com/success/services/services.dart';

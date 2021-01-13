@@ -13,18 +13,19 @@ class RecipePreviewOneState extends State<RecipePreviewOne> {
   Future<Recipes> recipes;
 
   RecipePreviewOneState() {
+    print('load recipes....');
     this.recipes = SimpleService().getAllNewRecipes();
   }
 
   ImageProvider buildNetworkImage(String imageUrl) {
-    String prefix = imageUrl.substring(0, imageUrl.lastIndexOf('/') + 1);
+    // String prefix = imageUrl.substring(0, imageUrl.lastIndexOf('/') + 1);
     NetworkImage networkImage = NetworkImage(imageUrl);
     Image.network(imageUrl)
         .image
         .resolve(ImageConfiguration.empty)
         .addListener(ImageStreamListener((_, __) {}, onError: (_, __) {
           print('''image doesn't exist ''' + imageUrl);
-          networkImage = NetworkImage(prefix + defaultRecipeImage);
+          // networkImage = NetworkImage(prefix + defaultRecipeImage);
         }));
     return networkImage;
   }
@@ -48,12 +49,15 @@ class RecipePreviewOneState extends State<RecipePreviewOne> {
               child: Container(
                   decoration: BoxDecoration(
                       image: DecorationImage(
+                          image: buildNetworkImage(e.pictureUrl),
                           onError: (obj, st) {
                             WidgetsBinding.instance.addPostFrameCallback((_) {
+                              print('unable to load .... ..... '+ e.recipeId);
+                              String prefix = e.pictureUrl.substring(0, e.pictureUrl.lastIndexOf('/') + 1);
+                              e.pictureUrl = prefix + defaultRecipeImage;
                               setState(() {});
                             });
-                          },
-                          image: buildNetworkImage(e.pictureUrl))),
+                          })),
                   // height: 150,
                   // width: double.infinity,
                   // padding: EdgeInsets.only(bottom: 10.0),
@@ -133,7 +137,7 @@ class RecipePreviewOneState extends State<RecipePreviewOne> {
 
   @override
   Widget build(BuildContext context) {
-    print('bulding....');
+    print('building....');
 
     var scaffold = Scaffold(
       appBar: AppBar(

@@ -26,7 +26,7 @@ class MyCarouselImage extends StatelessWidget {
       body: Center(
         child: CarouselSlider(
           options: CarouselOptions(autoPlay: true),
-          items: List.generate(10, (index) => 'images/paella_express.jpg')
+          items: List.generate(10, (index) => 'assets/images/paella_express.jpg')
               .map((e) => Image(image: AssetImage(e)))
               .toList(),
         ),

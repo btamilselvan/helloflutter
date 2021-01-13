@@ -18,13 +18,13 @@ class NetworkImageState extends State<NetworkImageTest> {
     ni
         .resolve(ImageConfiguration.empty)
         .addListener(new ImageStreamListener((image, status) {
-          print('loaded succssfully ' + imageUrl);
+          print('loaded successfully ' + imageUrl);
           print(status);
         }, onError: (obj, st) {
           print('error occurred ' + imageUrl);
-          setState(() {
-            ni = NetworkImage(prefix + 'Nonerecipe.webp');
-          });
+          // setState(() {
+          //   ni = NetworkImage(prefix + 'Nonerecipe.webp');
+          // });
         }));
     return ni;
   }
@@ -44,7 +44,12 @@ class NetworkImageState extends State<NetworkImageTest> {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: loadNetworkImage(
-                          'https://devstatic.reciperm.com/webp/Nonecategory.webp'))),
+                          'https://devstatic.reciperm.com/webp/Nonecategory.webp'),
+                      onError: (_, __) {
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          setState(() {});
+                        });
+                      })),
             ),
             Container(
               constraints: BoxConstraints(minHeight: 500, minWidth: 500),
