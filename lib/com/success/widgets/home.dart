@@ -24,6 +24,14 @@ class Home extends StatelessWidget {
                       arguments: ScreenArguments(
                           'hello', WordPair.random().asPascalCase)),
                   child: new Text('Recipe Preview'))),
+          Padding(
+              padding: EdgeInsets.all(10.0),
+              child: new ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(
+                      context, Constants.networkImageTestScreenName,
+                      arguments: ScreenArguments(
+                          'hello', WordPair.random().asPascalCase)),
+                  child: new Text('Network image test'))),
           Container(
             height: 50,
             child: ListView(

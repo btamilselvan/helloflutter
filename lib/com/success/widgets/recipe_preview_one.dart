@@ -1,93 +1,32 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wip/com/success/dto/recipes.dart';
+import 'package:wip/com/success/services/services.dart';
 import 'package:wip/com/success/widgets/recipe_detail.dart';
-import 'package:wip/com/success/widgets/services.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
-class RecipePreview extends StatelessWidget {
-  Future<Recipes> recipes;
+class RecipePreviewOne extends StatefulWidget {
+  @override
+  createState() => RecipePreviewOneState();
+}
+
+class RecipePreviewOneState extends State<RecipePreviewOne> {
   static const String defaultRecipeImage = 'Nonerecipe.webp';
+  Future<Recipes> recipes;
 
-  RecipePreview() {
+  RecipePreviewOneState() {
     this.recipes = SimpleService().getAllNewRecipes();
   }
 
-  List<Widget> createGridTileWidgets(Recipes r) {
-    return r.data
-        .map((e) => GridTile(
-              footer: Text(e.title),
-              child: Container(
-                  decoration: BoxDecoration(
-                      image:
-                          DecorationImage(image: NetworkImage(e.pictureUrl))),
-                  // height: 150,
-                  // width: double.infinity,
-                  padding: EdgeInsets.only(bottom: 10.0),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Text(e.title),
-                  )),
-            ))
-        .toList();
-  }
-
-  List<Widget> createCardWidgets(Recipes r) {
-    return r.data
-        .map((e) => Card(
-              child: Container(
-                  decoration: BoxDecoration(
-                      image:
-                          DecorationImage(image: NetworkImage(e.pictureUrl))),
-                  // height: 150,
-                  // width: double.infinity,
-                  padding: EdgeInsets.only(bottom: 10.0),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Text(e.title),
-                  )),
-            ))
-        .toList();
-  }
-
-  List<Widget> createWidgetsUsingContainerRowColumn(Recipes r) {
-    r.data
-        .map((e) => Container(
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                          child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(e.pictureUrl))),
-                        // margin: ,
-                      ))
-                    ],
-                  )
-                ],
-              ),
-            ))
-        .toList();
-
-    return r.data
-        .map((e) => Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(image: NetworkImage(e.pictureUrl))),
-            // height: 150,
-            // width: double.infinity,
-            padding: EdgeInsets.only(bottom: 10.0),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(e.title),
-            )))
-        .toList();
-    // return r.data.map((recipe) => Text(recipe.title)).toList();
-  }
-
-  void toggleRating(index) {
-    print(index);
+  ImageProvider buildNetworkImage(String imageUrl) {
+    String prefix = imageUrl.substring(0, imageUrl.lastIndexOf('/') + 1);
+    NetworkImage networkImage = NetworkImage(imageUrl);
+    Image.network(imageUrl)
+        .image
+        .resolve(ImageConfiguration.empty)
+        .addListener(ImageStreamListener((_, __) {}, onError: (_, __) {
+          print('''image doesn't exist ''' + imageUrl);
+          networkImage = NetworkImage(prefix + defaultRecipeImage);
+        }));
+    return networkImage;
   }
 
   void viewRecipe(recipeId, context) {
@@ -96,38 +35,8 @@ class RecipePreview extends StatelessWidget {
         MaterialPageRoute(builder: (context) => RecipeDetail(recipeId)));
   }
 
-  ImageProvider buildNetworkImage(context, String imageUrl) {
-    String prefix = imageUrl.substring(0, imageUrl.lastIndexOf('/') + 1);
-    NetworkImage nn;
-    print('dasdas asdas d');
-    bool exists = false;
-    Image im = Image.network(imageUrl);
-    ImageStream iss = im.image.resolve(ImageConfiguration.empty);
-
-    iss.addListener(ImageStreamListener((info, call) {
-      exists = true;
-      nn = NetworkImage(imageUrl);
-    }, onError: (dynamic exception, StackTrace stackTrace) {
-      print('erer');
-      exists = false;
-      nn = NetworkImage(prefix + defaultRecipeImage);
-    }));
-
-    if (exists) {
-      return NetworkImage(imageUrl);
-    } else {
-      return NetworkImage(prefix + defaultRecipeImage);
-    }
-    return nn;
-    // return Image.network(imageUrl, errorBuilder:
-    //     (BuildContext context, Object exception, StackTrace stackTrace) {
-    //   print('error');
-    //   return Image.network(prefix + defaultRecipeImage);
-    // }).image;
-  }
-
-  void getCachedImage() {
-    // CachedNetworkImageProvider();
+  void toggleRating(index) {
+    print(index);
   }
 
   List<Widget> createWidgetsUsingContainer(Recipes r, context) {
@@ -139,7 +48,12 @@ class RecipePreview extends StatelessWidget {
               child: Container(
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: buildNetworkImage(context, e.pictureUrl))),
+                          onError: (obj, st) {
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              setState(() {});
+                            });
+                          },
+                          image: buildNetworkImage(e.pictureUrl))),
                   // height: 150,
                   // width: double.infinity,
                   // padding: EdgeInsets.only(bottom: 10.0),
@@ -157,7 +71,7 @@ class RecipePreview extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Row(
@@ -219,7 +133,9 @@ class RecipePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    print('bulding....');
+
+    var scaffold = Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text('Recipes'),
@@ -249,5 +165,7 @@ class RecipePreview extends StatelessWidget {
         ),
       ),
     );
+    print('build end....');
+    return scaffold;
   }
 }
