@@ -29,4 +29,33 @@ samples, guidance on mobile development, and a full API reference.
 ### Notes
 
  > Check recipe.dart and recipes.dart for json decode example
+ > create launch icons:
+    install: flutter_launcher_icons, update pubspec.yaml
+     run: flutter pub pub run flutter_launcher_icons:main
+
+> change app name
+    install: flutter_launcher_name, update pubspec.yaml
+    then run: flutter pub run flutter_launcher_name:main
+
+### Prepare for Android:
+> https://flutter.dev/docs/deployment/android
+1. Check the launcher icons and app name using the above steps
+2. Setup keys for app signing
+    keytool -genkey -v -keystore c:\Users\USER_NAME\key.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias key
+3. Updates the keys in key.properties (new file)
+4. configure gradle for app signing
+5. Update app label and give internet permissions to the app in AndroidManifest.xml
+6. Review build config in gradle.. like sdk version, appId, etc
+7. Build APK bundle -> flutter build appbundle
+    This should create the bundle here <app dir>/build/app/outputs/bundle/release/app.aab.
+8. Offline test:
+    1. download bundletool jar from github then -> alias bundletool='java -jar bundletool-all.jar or java -jars bundletool-all.jar
+    2.  bundletool build-apks --bundle=/t/Git_Repository/tamil/flutter/helloflutter/build/app/outputs/bundle/release/app-release.aab --output /t/Git_Repository/tamil/flutter/helloflutter/build/app/outputs/bundle/apks/wip.apks --ks=/c/Users/Tamil/.ssh/apk_key.jks --ks-pass=pass:password --ks-key-alias=apkkey
+    3. Install apk to the connected device:  bundletool install-apks --apks=/t/Git_Repository/tamil/flutter/helloflutter/build/app/outputs/bundle/apks/wip.apks
+9. Playstore test
+    > setup google play account
+    > create a internal release, and upload appbundle, setup testers group, invite testers
+    > after internal testing, perform open testing with larger audience
+
+
 
