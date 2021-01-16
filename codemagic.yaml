@@ -15,7 +15,6 @@ workflows:
       - |
         # set up debug keystore
         rm -f ~/.android/debug.keystore
-        rm
 
         echo $FCI_BUILD_DIR
         echo ~
@@ -35,7 +34,7 @@ workflows:
 
         # set up key properties
         echo "storePassword=Primary@1947" >> "$FCI_BUILD_DIR/android/key.properties"
-        echo "keyPassword=Secondary@1947" >> "$FCI_BUILD_DIR/android/key.properties"
+        echo "keyPassword=Primary@1947" >> "$FCI_BUILD_DIR/android/key.properties"
         echo "keyAlias=apkkey" >> "$FCI_BUILD_DIR/android/key.properties"
         echo "storeFile=/Users/builder/.android/debug.keystore" >> "$FCI_BUILD_DIR/android/key.properties"
 
