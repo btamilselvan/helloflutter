@@ -15,12 +15,14 @@ workflows:
       - |
         # set up debug keystore
         rm -f ~/.android/debug.keystore
-        rm -f $FCI_BUILD_DIR/debug.keystore
+
+        echo $FCI_BUILD_DIR
+        echo ~
 
         keytool -genkeypair \
           -alias apkkey \
           -keypass Primary@1947 \
-          -keystore $FCI_BUILD_DIR/debug.keystore \
+          -keystore ~/.android/debug.keystore \
           -storepass Primary@1947 \
           -dname 'CN=TB,OU=WIP,O=Success,L=Fairfax,ST=VA,C=US' \
           -keyalg 'RSA' \
@@ -34,7 +36,7 @@ workflows:
         echo "storePassword=Primary@1947" >> "$FCI_BUILD_DIR/android/key.properties"
         echo "keyPassword=Secondary@1947" >> "$FCI_BUILD_DIR/android/key.properties"
         echo "keyAlias=apkkey" >> "$FCI_BUILD_DIR/android/key.properties"
-        echo "storeFile=$FCI_BUILD_DIR/debug.keystore" >> "$FCI_BUILD_DIR/android/key.properties"
+        echo storeFile=~/.android/debug.keystore >> "./android/key.properties"
 
       - cd . && flutter packages pub get
       - cd . && flutter pub run build_runner build
