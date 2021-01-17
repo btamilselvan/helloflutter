@@ -32,6 +32,14 @@ class Home extends StatelessWidget {
                       arguments: ScreenArguments(
                           'hello', WordPair.random().asPascalCase)),
                   child: new Text('Network image test'))),
+          Padding(
+              padding: EdgeInsets.all(10.0),
+              child: new ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(
+                      context, Constants.googleSigninScreenName,
+                      arguments: ScreenArguments(
+                          'hello', WordPair.random().asPascalCase)),
+                  child: new Text('Google SignIn Test'))),
           Container(
             height: 50,
             child: ListView(

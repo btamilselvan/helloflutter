@@ -21,6 +21,7 @@ class Constants {
   static const String httpTestScreenName = '/http-test';
   static const String recipePreviewTestScreenName = '/recipe-preview-test';
   static const String networkImageTestScreenName = '/nw-image-test';
+  static const String googleSigninScreenName = '/google-signin-test';
 }
 
 class Data {

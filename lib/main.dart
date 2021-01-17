@@ -5,6 +5,7 @@ import 'package:wip/com/success/widgets/basic.dart';
 import 'package:wip/com/success/widgets/form_test.dart';
 import 'package:wip/com/success/widgets/home.dart';
 import 'package:wip/com/success/widgets/http_test.dart';
+import 'package:wip/com/success/widgets/my_google_signin.dart';
 import 'package:wip/com/success/widgets/my_images.dart';
 import 'package:wip/com/success/widgets/my_list.dart';
 import 'package:wip/com/success/widgets/navigate_one.dart';
@@ -33,7 +34,8 @@ void main() {
       Constants.carouselScreenName: (context) => MyCarouselImage(),
       Constants.httpTestScreenName: (context) => MyHttpTest(),
       Constants.recipePreviewTestScreenName: (context) => RecipePreviewOne(),
-      Constants.networkImageTestScreenName: (context) => NetworkImageTest()
+      Constants.networkImageTestScreenName: (context) => NetworkImageTest(),
+      Constants.googleSigninScreenName: (context) => SignInDemo()
     },
   ));
 }
