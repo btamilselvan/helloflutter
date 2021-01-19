@@ -56,6 +56,8 @@ samples, guidance on mobile development, and a full API reference.
     > setup google play account
     > create a internal release, and upload appbundle, setup testers group, invite testers
     > after internal testing, perform open testing with larger audience
+Notes:
 
-
-
+> Use Android studio to create playstore image (512 X 512)
+> Use google sites to host privacy policy page (https://sites.google.com/).
+> Create feature graphic from here: https://www.norio.be/graphic-generator/
