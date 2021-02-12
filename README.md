@@ -61,3 +61,19 @@ Notes:
 > Use Android studio to create playstore image (512 X 512)
 > Use google sites to host privacy policy page (https://sites.google.com/).
 > Create feature graphic from here: https://www.norio.be/graphic-generator/
+
+
+> Generate SHA1 and SHA256 fingerprints:
+ keytool.exe -list -v -alias androiddebugkey -keystore /c/Users/Tamil/.ssh/apk_key_debug.jks
+ 
+> dynamic link
+> can be created programatically or thru firebase console. 
+- a free subdomain from "page.link" can be used.
+- configure dynamic link in firebase console (set up deep link url, ios and android package info). a valid url is needed for deep link url for web (anything is fine when accessed from mobile) (http://apps.tamils.rocks).
+
+> Programmatic creation
+- whitelist the domains, the one with "page.link" (trocks.page.link). No need to whiltelist the deeplink url (apps.tamils.rocks)
+- Use ActionCodeSettings to set dynamic link properties. can use short-link for the url.
+- the dynamic link url will be something like, https://trocks.page.link/?link=http://apps.tamils.rocks&apn=com.success.tradnalist&amv=1&ibi=com.success.tradnalist&isi=1234567
+- the short dynamic link can be used in the code instead of full url (short link will be created when dynamic link is setup in console)
+- setup dynamic link receiver in the app to handle the incoming requests to the app
