@@ -22,6 +22,8 @@ class Constants {
   static const String recipePreviewTestScreenName = '/recipe-preview-test';
   static const String networkImageTestScreenName = '/nw-image-test';
   static const String googleSigninScreenName = '/google-signin-test';
+  static const String slideUp = '/slide-up';
+  static const String charts = '/charts';
 }
 
 class Data {

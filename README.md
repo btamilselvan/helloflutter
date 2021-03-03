@@ -77,3 +77,18 @@ Notes:
 - the dynamic link url will be something like, https://trocks.page.link/?link=http://apps.tamils.rocks&apn=com.success.tradnalist&amv=1&ibi=com.success.tradnalist&isi=1234567
 - the short dynamic link can be used in the code instead of full url (short link will be created when dynamic link is setup in console)
 - setup dynamic link receiver in the app to handle the incoming requests to the app
+
+### firebase
+
+> make sure to initialize firebase app in the main.
+> for web, follow the instructions provided in firebase web app configuration and include the settings in index.html
+> initialize firebase app in index.html. make sure to include the firebase js in index.html
+> use firebase cli for hosting
+> include google client id in index.html to use google sign in
+> use firebase service account to use firebase services in the backend to validate idToken, to call firestore, etc.
+
+### flutter
+> remember that print truncates the input string to 1020 characters
+> to connect to localhost in the host machine from android emulator, use the ip: 10.0.2.2. This ip in emulator is mapped to localhost in the host machine
+> to enable http url (instead of https), add <application android:usesCleartextTraffic="true"></application> in AndroidManifest.xml and <key>NSAllowsArbitraryLoads</key> <true/> in iOS Info.plist
+

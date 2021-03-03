@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wip/Words.dart';
 import 'package:wip/com/success/widgets/app_login.dart';
 import 'package:wip/com/success/widgets/basic.dart';
+import 'package:wip/com/success/widgets/charts.dart';
 import 'package:wip/com/success/widgets/form_test.dart';
 import 'package:wip/com/success/widgets/home.dart';
 import 'package:wip/com/success/widgets/http_test.dart';
@@ -12,6 +13,7 @@ import 'package:wip/com/success/widgets/navigate_one.dart';
 import 'package:wip/com/success/widgets/network_image_test.dart';
 import 'package:wip/com/success/widgets/recipe_preview_one.dart';
 import 'package:wip/com/success/widgets/recipes_preview.dart';
+import 'package:wip/com/success/widgets/slideup.dart';
 import 'package:wip/com/success/widgets/stateful_test.dart';
 import 'package:wip/com/success/widgets/util.dart';
 
@@ -25,6 +27,7 @@ void main() {
     initialRoute: Home.screenName,
     routes: {
       Constants.homeScreenName: (context) => Home(),
+      Constants.slideUp: (context) => Slideup(),
       Constants.formScreenName: (context) => MySimpleForm(),
       Constants.statefulScreenName: (context) => MyStatefulWidget(),
       Constants.imageScreenName: (context) => MyImage(),
@@ -35,7 +38,8 @@ void main() {
       Constants.httpTestScreenName: (context) => MyHttpTest(),
       Constants.recipePreviewTestScreenName: (context) => RecipePreviewOne(),
       Constants.networkImageTestScreenName: (context) => NetworkImageTest(),
-      Constants.googleSigninScreenName: (context) => SignInDemo()
+      Constants.googleSigninScreenName: (context) => SignInDemo(),
+      Constants.charts: (context) => Charts()
     },
   ));
 }

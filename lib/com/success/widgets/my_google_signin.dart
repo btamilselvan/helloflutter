@@ -31,7 +31,10 @@ class SignInDemoState extends State<SignInDemo> {
   void initState() {
     super.initState();
     _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+
+      print('Hello ...... ');
       setState(() {
+        print('Hello 111...... ');
         _currentUser = account;
       });
       if (_currentUser != null) {
@@ -42,6 +45,12 @@ class SignInDemoState extends State<SignInDemo> {
   }
 
   Future<void> _handleGetContact() async {
+    print('loading contact...');
+    _currentUser.authentication.then((value){
+      print('token is ${value.idToken}');
+      print('access token is ${value.accessToken}');
+      print('value is ${value}');
+    });
     setState(() {
       _contactText = "Loading contact info...";
     });
@@ -109,6 +118,7 @@ class SignInDemoState extends State<SignInDemo> {
             title: Text(_currentUser.displayName ?? ''),
             subtitle: Text(_currentUser.email ?? ''),
           ),
+          Text('Token is '),
           const Text("Signed in successfully."),
           Text(_contactText ?? ''),
           ElevatedButton(

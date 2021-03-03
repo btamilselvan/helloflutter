@@ -17,6 +17,20 @@ class Home extends StatelessWidget {
                 'Navigate to different pages using the below buttons/links'),
           ),
           Padding(
+            padding: EdgeInsets.all(10.0),
+            child: new ElevatedButton(
+                onPressed: () => Navigator.pushNamed(context, Constants.charts),
+                child: new Text('Charts')),
+          ),
+          Padding(
+              padding: EdgeInsets.all(10.0),
+              child: new ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(
+                      context, Constants.slideUp,
+                      arguments: ScreenArguments(
+                          'hello', WordPair.random().asPascalCase)),
+                  child: new Text('Slideup'))),
+          Padding(
               padding: EdgeInsets.all(10.0),
               child: new ElevatedButton(
                   onPressed: () => Navigator.pushNamed(
